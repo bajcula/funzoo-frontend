@@ -8,6 +8,7 @@ const SinglePost = (props) => {
             <p>Location: {props.post.location}</p>
             <p>Created by: {props.post.user}</p>
             <p>Cretated at: {props.post.created_at}</p>
+            <button onClick={()=>props.deletePost(props.post.id)}>DELETE POST</button>
         </div>
     )
 }

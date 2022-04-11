@@ -30,7 +30,20 @@
 
 #single-post {
   border: 3px double turquoise;
-  margin: 50px 300px;
+  margin: 20px 40px;
+}
+
+.form-row-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  gap: 10px;
+}
+
+.mb-3 {
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes App-logo-spin {
