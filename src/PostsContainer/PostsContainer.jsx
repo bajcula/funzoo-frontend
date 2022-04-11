@@ -3,8 +3,8 @@ import SinglePost from "./SinglePost/SinglePost";
 import NewPost from "./NewPost/NewPost";
 
 class PostsContainer extends React.Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             posts: [],
             newPost: {
@@ -16,6 +16,12 @@ class PostsContainer extends React.Component {
                 user: "",
             }
         }
+        this.handler = this.handler.bind(this)
+    }
+    handler(newUpdatedPost, idToUpdate) {
+        this.setState({
+            posts: this.state.posts.map(p=> p.id === idToUpdate ? newUpdatedPost : p)
+        })
     }
     handleNewPostChange = (e) => {
         this.setState({
@@ -35,7 +41,6 @@ class PostsContainer extends React.Component {
             })
         }
     }
-    // CREATE NOT WORKING CORS PROBLEM ??!
     createNewPost = async(e) => {
         e.preventDefault()
         const createNewPostApiRequest = await fetch(`http://localhost:8000/api/posts/`, {
@@ -55,14 +60,7 @@ class PostsContainer extends React.Component {
             // TELL USER THERE IS AN ERROR!
         }
     }
-    async getPosts() {
-        const getPostsApiReponse = await fetch(`http://localhost:8000/api/posts/`)
-        const apiReponseParsed = await getPostsApiReponse.json()
-        console.log(apiReponseParsed)
-        this.setState({
-            posts: apiReponseParsed
-        })
-    }
+
     deletePost = async(idToDelete) => {
         const deletePostApiRequest = await fetch(`http://localhost:8000/api/posts/${idToDelete}/`, {
             method: "DELETE",
@@ -75,6 +73,15 @@ class PostsContainer extends React.Component {
             // HANDLE DELETE ERROR
         }
     }
+    async getPosts() {
+        const getPostsApiReponse = await fetch(`http://localhost:8000/api/posts/`)
+        const apiReponseParsed = await getPostsApiReponse.json()
+        console.log(apiReponseParsed)
+        this.setState({
+            posts: apiReponseParsed
+        })
+    }
+
     componentDidMount(){
         this.getPosts()
     }
@@ -90,7 +97,7 @@ class PostsContainer extends React.Component {
                 </NewPost>
                 {this.state.posts.map((p)=>{
                     return (
-                        <SinglePost deletePost={this.deletePost} key={`post-${p.id}`} post={p}></SinglePost>
+                        <SinglePost handler={this.handler} updatePost={this.updatePost} deletePost={this.deletePost} key={`post-${p.id}`} post={p}></SinglePost>
                     )
                 })}
             </div>
