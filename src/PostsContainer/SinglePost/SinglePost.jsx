@@ -4,6 +4,8 @@ import UpdatePost from "./UpdatePost/UpdatePost";
 class SinglePost extends React.Component {
     constructor(props){
         super(props)
+        this.updatePost = this.updatePost.bind(this);
+        this.handlerButtons = this.handlerButtons.bind(this)
         this.state = {
             updatedPost: {
                 id: this.props.post.id,
@@ -18,6 +20,7 @@ class SinglePost extends React.Component {
         }
     }
     updatePost = async(idToUpdate) => {
+        console.log(this.state.updatedPost)
         const updatePostApiReponse = await fetch(`http://localhost:8000/api/posts/${idToUpdate}/`, {
             method: "PUT",
             body: JSON.stringify(this.state.updatedPost),
@@ -41,14 +44,17 @@ class SinglePost extends React.Component {
             }
         })
     }
+    handlerButtons = (choice) => {
+        this.setState({
+            updatedPost: {
+                ...this.state.updatedPost,
+                pet_category: choice
+            }
+        })
+    }
     handleRadioButtons = (e) => {
         if (['dog','cat','other'].includes(e.target.id)) {
-            this.setState({
-                updatedPost: {
-                    ...this.state.updatedPost,
-                    pet_category: e.target.id
-                }
-            })
+            this.handlerButtons(e.target.id)
         }
     }
     render(){
