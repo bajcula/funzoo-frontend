@@ -14,7 +14,8 @@ class SinglePost extends React.Component {
                 description: this.props.post.description,
                 location: this.props.post.location,
                 img: this.props.post.img,
-                user: this.props.post.user,
+                authorID: this.props.post.authorID,
+                authorName: this.props.post.authorName,
                 created_at: this.props.post.created_at
             }
         }
@@ -65,7 +66,7 @@ class SinglePost extends React.Component {
             <h6>{this.props.post.description}</h6>
             <p>Category: {this.props.post.pet_category}</p>
             <p>Location: {this.props.post.location}</p>
-            <p>Created by: {this.props.post.user}</p>
+            <p>Created by: {this.props.post.authorName}</p>
             <p>Cretated at: {this.props.post.created_at}</p>
             <button onClick={()=>this.props.deletePost(this.props.post.id)}>DELETE POST</button>
             <UpdatePost

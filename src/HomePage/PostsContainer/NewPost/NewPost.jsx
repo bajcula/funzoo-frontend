@@ -38,10 +38,6 @@ class NewPost extends React.Component {
                         <label htmlFor="location">Location:</label>
                         <input onChange={this.props.handleNewPostChange} name="location"></input>
                     </div>
-                    <div className="form-row">
-                        <label htmlFor="user">User</label>
-                        <input onChange={this.props.handleNewPostChange} name="user"></input>
-                    </div>
                     <button type="submit">SUBMIT</button>
                 </form>
             </div>
