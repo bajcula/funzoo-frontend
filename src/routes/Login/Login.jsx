@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../Navbar/Navbar";
 
+
 class Login extends React.Component {
     constructor(props){
         super(props)
@@ -22,9 +23,9 @@ class Login extends React.Component {
         })
     }
     loginTry = async(e) => {
-        
+      
         e.preventDefault()
-        console.time('loop')
+      
         const apiResponse = await fetch (`http://localhost:8000/auth/login/`, {
             method: "POST",
             body: JSON.stringify(this.state.possibleUser),
@@ -35,10 +36,10 @@ class Login extends React.Component {
         })
         const parsedResponse = await apiResponse.json()
         console.log(parsedResponse)
-        console.timeEnd('loop')
+      
         if (parsedResponse.user) {
             localStorage.setItem("user", JSON.stringify(parsedResponse.user))
-            window.location.reload()
+            window.location.href = "http://localhost:3000";
         } else {
             // LOGIN ERROR
             window.location.reload()

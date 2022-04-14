@@ -11,13 +11,17 @@ class HomePage extends React.Component {
         return (
             <div>
                 <Navbar></Navbar>
+                <br/>
+                <Link to='/accounts'>Explore the community!</Link>
+                <br/>
+                <br/>
+                <br/>
                 <Link to="/login">Log In</Link>
                 <br/>
                 <br/>
                 {this.props.currentUser.email !== ""?
                 <p>logged in!</p>
                 :
-
                 <>
                 <p>not logged in!</p>
                 <Link to="/register">Register</Link>

@@ -19,6 +19,17 @@
   margin: 20px 40px;
 }
 
+.users-page-image {
+  max-height: 300px;
+  max-width: 300px;
+}
+
+.user-card {
+  height: 300px;
+  width: 300px;
+  border: 3px solid red;
+}
+
 .form-row-category {
   display: flex;
   justify-content: center;
