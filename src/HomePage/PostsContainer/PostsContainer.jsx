@@ -1,6 +1,8 @@
 import React from "react";
 import SinglePost from "./SinglePost/SinglePost";
 import NewPost from "./NewPost/NewPost";
+import axios from 'axios';
+import apiUrl from "../../apiConfig";
 
 
 class PostsContainer extends React.Component {
@@ -20,6 +22,7 @@ class PostsContainer extends React.Component {
         this.handler = this.handler.bind(this)
     }
     componentDidMount(){
+        this.getPosts()
         const currentUser = this.props.getUser()
         if (currentUser) {
             this.setState({
@@ -28,11 +31,6 @@ class PostsContainer extends React.Component {
         }
         this.setState({
             currentUser: currentUser,
-            newPost: {
-                ...this.state.newPost,
-                authorID: currentUser.id,
-                authorName: currentUser.name
-            }
         })
     }
     handler(newUpdatedPost, idToUpdate) {
@@ -48,6 +46,14 @@ class PostsContainer extends React.Component {
             }
         })
     }
+    handleImageChange = (e) => {
+        this.setState({
+            newPost: {
+                ...this.state.newPost,
+                img: e.target.files[0]
+            }
+        })
+    };
     handleRadioButtons = (e) => {
         if (['dog','cat','other'].includes(e.target.id)) {
             this.setState({
@@ -60,31 +66,41 @@ class PostsContainer extends React.Component {
     }
     createNewPost = async(e) => {
         e.preventDefault()
-        const thePostToSend = {
-            ...this.state.newPost,
-            authorID: this.props.currentUser.id,
-            authorName: this.props.currentUser.name
-        }
-        const createNewPostApiRequest = await fetch(`http://localhost:8000/api/posts/`, {
-            method: "POST",
-            body: JSON.stringify(thePostToSend),
-            headers: {
-                "Content-Type": "application/json"
+        let form_data = new FormData();
+        form_data.append('title', this.state.newPost.title)
+        form_data.append('pet_category', this.state.newPost.pet_category)
+        form_data.append('description', this.state.newPost.description)
+        form_data.append('location', this.state.newPost.location)
+        form_data.append('img', this.state.newPost.img)
+        form_data.append('authorID', this.props.currentUser.id)
+        form_data.append('authorName', this.props.currentUser.name)
+        console.log(form_data)
+        // const createNewPostApiRequest = await fetch(`http://localhost:8000/api/posts/`, {
+        //     method: "POST",
+        //     body: JSON.stringify(form_data),
+        //     headers: {
+        //         "Content-Type": "multipart/form-data"
+        //     }
+        // })
+        const submitedPost = await axios.post(`${apiUrl}/api/posts/`, form_data, {
+            headers:{
+                'Content-Type':'multipart/form-data'
             }
         })
-        if (createNewPostApiRequest.status === 201) {
-            const createNewPostResponseParsed = await createNewPostApiRequest.json()
-            console.log(createNewPostResponseParsed)
-            this.setState({
-                posts: [createNewPostResponseParsed, ...this.state.posts]
-            })
-        } else {
-            // TELL USER THERE IS AN ERROR!
-        }
+        console.log(submitedPost)
+        // if (createNewPostApiRequest.status === 201) {
+        //     const createNewPostResponseParsed = await createNewPostApiRequest.json()
+        //     console.log(createNewPostResponseParsed)
+        //     this.setState({
+        //         posts: [createNewPostResponseParsed, ...this.state.posts]
+        //     })
+        // } else {
+        //     // TELL USER THERE IS AN ERROR!
+        // }
     }
 
     deletePost = async(idToDelete) => {
-        const deletePostApiRequest = await fetch(`http://localhost:8000/api/posts/${idToDelete}/`, {
+        const deletePostApiRequest = await fetch(`${apiUrl}/api/posts/${idToDelete}/`, {
             method: "DELETE",
         })
         if (deletePostApiRequest.status === 204) {
@@ -96,7 +112,7 @@ class PostsContainer extends React.Component {
         }
     }
     async getPosts() {
-        const getPostsApiReponse = await fetch(`http://localhost:8000/api/posts/`)
+        const getPostsApiReponse = await fetch(`${apiUrl}/api/posts/`)
         const apiReponseParsed = await getPostsApiReponse.json()
         console.log(apiReponseParsed)
         this.setState({
@@ -104,9 +120,7 @@ class PostsContainer extends React.Component {
         })
     }
 
-    componentDidMount(){
-        this.getPosts()
-    }
+   
     render () {
         return (
             <div>
@@ -115,6 +129,7 @@ class PostsContainer extends React.Component {
                 handleRadioButtons={this.handleRadioButtons}
                 createNewPost={this.createNewPost}
                 handleNewPostChange={this.handleNewPostChange}
+                handleImageChange={this.handleImageChange}
                 >
                 </NewPost>
                 {this.state.posts.map((p)=>{

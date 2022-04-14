@@ -1,4 +1,5 @@
 import React from "react";
+import apiUrl from "../../../apiConfig";
 import UpdatePost from "./UpdatePost/UpdatePost";
 
 class SinglePost extends React.Component {
@@ -22,7 +23,7 @@ class SinglePost extends React.Component {
     }
     updatePost = async(idToUpdate) => {
         console.log(this.state.updatedPost)
-        const updatePostApiReponse = await fetch(`http://localhost:8000/api/posts/${idToUpdate}/`, {
+        const updatePostApiReponse = await fetch(`${apiUrl}/api/posts/${idToUpdate}/`, {
             method: "PUT",
             body: JSON.stringify(this.state.updatedPost),
             headers: {

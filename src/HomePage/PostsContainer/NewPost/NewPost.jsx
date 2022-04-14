@@ -2,11 +2,10 @@ import React from "react";
 import Form from 'react-bootstrap/Form'
 
 class NewPost extends React.Component {
-
     render () {
         return (
             <div>
-                <form onSubmit={this.props.createNewPost}>
+                <form onSubmit={this.props.createNewPost} encType='multipart/form'>
                     <div className="form-row">
                         <label htmlFor="title">Title:</label>
                         <input onChange={this.props.handleNewPostChange} name="title"></input>
@@ -17,8 +16,10 @@ class NewPost extends React.Component {
                     </div>
                     <div className="form-row">
                         <label htmlFor="img">Image:</label>
-                        <input onChange={this.props.handleNewPostChange} name="img"></input>
+                        <input id="img-file" type="file" accept="image/png, image/jpeg, image/jpg" onChange={this.props.handleImageChange} required name="img"></input>
                     </div>
+                   
+
                     <div className="form-row-category">
                             <label htmlFor="pet_category">Category:</label>
                             {['dog', 'cat', 'other'].map((option) => (
