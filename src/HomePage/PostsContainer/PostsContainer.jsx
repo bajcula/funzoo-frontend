@@ -2,6 +2,7 @@ import React from "react";
 import SinglePost from "./SinglePost/SinglePost";
 import NewPost from "./NewPost/NewPost";
 
+
 class PostsContainer extends React.Component {
     constructor(props){
         super(props)
@@ -12,11 +13,27 @@ class PostsContainer extends React.Component {
                 pet_category: "",
                 description: "",
                 location: "",
-                img: "",
-                user: "",
-            }
+                img: ""
+            },
+            currentUser: { }
         }
         this.handler = this.handler.bind(this)
+    }
+    componentDidMount(){
+        const currentUser = this.props.getUser()
+        if (currentUser) {
+            this.setState({
+                currentUser: currentUser
+            })
+        }
+        this.setState({
+            currentUser: currentUser,
+            newPost: {
+                ...this.state.newPost,
+                authorID: currentUser.id,
+                authorName: currentUser.name
+            }
+        })
     }
     handler(newUpdatedPost, idToUpdate) {
         this.setState({
@@ -27,7 +44,7 @@ class PostsContainer extends React.Component {
         this.setState({
             newPost: {
                 ...this.state.newPost,
-                [e.target.name]: e.target.value
+                [e.target.name]: e.target.value,
             }
         })
     }
@@ -43,9 +60,14 @@ class PostsContainer extends React.Component {
     }
     createNewPost = async(e) => {
         e.preventDefault()
+        const thePostToSend = {
+            ...this.state.newPost,
+            authorID: this.props.currentUser.id,
+            authorName: this.props.currentUser.name
+        }
         const createNewPostApiRequest = await fetch(`http://localhost:8000/api/posts/`, {
             method: "POST",
-            body: JSON.stringify(this.state.newPost),
+            body: JSON.stringify(thePostToSend),
             headers: {
                 "Content-Type": "application/json"
             }

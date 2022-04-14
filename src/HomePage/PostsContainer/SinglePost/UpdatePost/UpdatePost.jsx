@@ -1,7 +1,14 @@
 import Form from 'react-bootstrap/Form'
 
 const UpdatePost = (props) => {
-    console.log(props)
+    let category
+    if (props.updatedPost.pet_category === 'dog') {
+        category = 'dog'
+    } else if (props.updatedPost.pet_category === 'cat') {
+        category = 'cat'
+    } else {
+        category = 'other'
+    }
     return (
         <div>
             <form onSubmit={(e)=>{e.preventDefault(); props.updatePost(props.updatedPost.id)}}>
@@ -21,13 +28,9 @@ const UpdatePost = (props) => {
                         <label htmlFor="pet_category">Category:</label>
                         {['dog', 'cat', 'other'].map((option) => (
                             <div key={`inline-radio-div-${option}`} className="mb-3">
+                                {category === option?
                                 <Form.Check
-                                    // {...props.updatedPost.pet_category === option && checked?
-                                    // checked
-                                    // :
-                                    // <></>
-                                    // }
-                                    
+                                    defaultChecked
                                     inline
                                     onClick={props.handleRadioButtons}
                                     label={option}
@@ -35,16 +38,30 @@ const UpdatePost = (props) => {
                                     type={"radio"}
                                     id={`${option}`}
                                 />
+                                :
+                                <Form.Check
+                                    inline
+                                    onClick={props.handleRadioButtons}
+                                    label={option}
+                                    name='name'
+                                    type={"radio"}
+                                    id={`${option}`}
+                                />    
+                                }
+                                {/* <Form.Check
+                                    inline
+                                    onClick={props.handleRadioButtons}
+                                    label={option}
+                                    name='name'
+                                    type={"radio"}
+                                    id={`${option}`}
+                                /> */}
                             </div>
                         ))}
                 </div>
                 <div className="form-row">
                     <label htmlFor="location">Location:</label>
                     <input onChange={props.handleUpdatePostChange} name="location" value={props.updatedPost.location}></input>
-                </div>
-                <div className="form-row">
-                    <label htmlFor="user">User</label>
-                    <input onChange={props.handleUpdatePostChange} name="user" value={props.updatedPost.user}></input>
                 </div>
                 <button type="submit">SUBMIT</button>
             </form>

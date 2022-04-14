@@ -4,6 +4,8 @@ import UpdatePost from "./UpdatePost/UpdatePost";
 class SinglePost extends React.Component {
     constructor(props){
         super(props)
+        this.updatePost = this.updatePost.bind(this);
+        this.handlerButtons = this.handlerButtons.bind(this)
         this.state = {
             updatedPost: {
                 id: this.props.post.id,
@@ -12,12 +14,14 @@ class SinglePost extends React.Component {
                 description: this.props.post.description,
                 location: this.props.post.location,
                 img: this.props.post.img,
-                user: this.props.post.user,
+                authorID: this.props.post.authorID,
+                authorName: this.props.post.authorName,
                 created_at: this.props.post.created_at
             }
         }
     }
     updatePost = async(idToUpdate) => {
+        console.log(this.state.updatedPost)
         const updatePostApiReponse = await fetch(`http://localhost:8000/api/posts/${idToUpdate}/`, {
             method: "PUT",
             body: JSON.stringify(this.state.updatedPost),
@@ -41,14 +45,17 @@ class SinglePost extends React.Component {
             }
         })
     }
+    handlerButtons = (choice) => {
+        this.setState({
+            updatedPost: {
+                ...this.state.updatedPost,
+                pet_category: choice
+            }
+        })
+    }
     handleRadioButtons = (e) => {
         if (['dog','cat','other'].includes(e.target.id)) {
-            this.setState({
-                updatedPost: {
-                    ...this.state.updatedPost,
-                    pet_category: e.target.id
-                }
-            })
+            this.handlerButtons(e.target.id)
         }
     }
     render(){
@@ -59,7 +66,7 @@ class SinglePost extends React.Component {
             <h6>{this.props.post.description}</h6>
             <p>Category: {this.props.post.pet_category}</p>
             <p>Location: {this.props.post.location}</p>
-            <p>Created by: {this.props.post.user}</p>
+            <p>Created by: {this.props.post.authorName}</p>
             <p>Cretated at: {this.props.post.created_at}</p>
             <button onClick={()=>this.props.deletePost(this.props.post.id)}>DELETE POST</button>
             <UpdatePost
