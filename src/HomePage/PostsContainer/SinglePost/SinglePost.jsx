@@ -21,6 +21,23 @@ class SinglePost extends React.Component {
             }
         }
     }
+    // getCookie(name) {
+    //     var cookieValue = null;
+    //     if (document.cookie && document.cookie !== '') {
+    //         var cookies = document.cookie.split(';');
+    //         for (var i = 0; i < cookies.length; i++) {
+    //             var cookie = cookies[i].trim();
+    //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+    //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return cookieValue;
+    // }
+    
+    // csrftoken = this.getCookie('csrftoken');
+
     updatePost = async(idToUpdate) => {
         console.log(this.state.updatedPost)
         const updatePostApiReponse = await fetch(`${apiUrl}/api/posts/${idToUpdate}/`, {
@@ -46,6 +63,34 @@ class SinglePost extends React.Component {
             }
         })
     }
+
+
+    savePost = async(e) => {
+        e.preventDefault()
+        const currentUser = this.props.currentUser
+        console.log(currentUser.id)
+        const likedPost = await fetch (`${apiUrl}/api/posts/${this.props.post.id}/${currentUser.id}/save`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        // window.location.href = `${window.location.origin}/api/posts/${this.props.post.id}`
+        console.log(likedPost)
+    }
+    unsavePost = async(e) => {
+        e.preventDefault()
+        const currentUser = this.props.currentUser
+        console.log(currentUser.id)
+        const unlikedPost = await fetch (`${apiUrl}/api/posts/${this.props.post.id}/${currentUser.id}/unsave`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        console.log(unlikedPost)
+        // window.location.href = `${window.location.origin}/api/posts/${this.props.post.id}/unsave`
+    }
     handlerButtons = (choice) => {
         this.setState({
             updatedPost: {
@@ -59,6 +104,9 @@ class SinglePost extends React.Component {
             this.handlerButtons(e.target.id)
         }
     }
+    // componentDidMount(){
+    //     const csrftoken = getCookie('csrftoken');
+    // }
     render(){
         return (
         <div id='single-post'>
@@ -70,6 +118,23 @@ class SinglePost extends React.Component {
             <p>Created by: {this.props.post.authorName}</p>
             <p>Cretated at: {this.props.post.created_at}</p>
             <button onClick={()=>this.props.deletePost(this.props.post.id)}>DELETE POST</button>
+
+            {/* <button id="post_id" onClick={this.savePost}>SAVE</button>
+            <button onClick={this.unsavePost}>UNSAVE</button> */}
+
+            <form onSubmit={this.savePost}>
+
+            <button type="submit">LIKE</button>
+
+            </form>
+
+            <br/>
+            <form onSubmit={this.unsavePost}>
+
+            <button type="submit">UNLIKE</button>
+
+            </form>
+            <br/>
             <UpdatePost
             handler={this.props.handler}
             updatePost={this.updatePost}

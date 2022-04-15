@@ -126,7 +126,7 @@ class PostsContainer extends React.Component {
                 </NewPost>
                 {this.state.posts.map((p)=>{
                     return (
-                        <SinglePost handler={this.handler} updatePost={this.updatePost} deletePost={this.deletePost} key={`post-${p.id}`} post={p}></SinglePost>
+                        <SinglePost currentUser={this.state.currentUser} handler={this.handler} updatePost={this.updatePost} deletePost={this.deletePost} key={`post-${p.id}`} post={p}></SinglePost>
                     )
                 })}
             </div>
