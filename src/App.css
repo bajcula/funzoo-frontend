@@ -25,6 +25,7 @@
   overflow:hidden;
   display: flex;
   flex-direction: column;
+  place-items: center;
 }
 
 .users-page-image, .single-post-img {
@@ -51,6 +52,10 @@
 .mb-3 {
   display: flex;
   justify-content: center;
+}
+#single-post button {
+  width: 200px;
+  height: 40px;
 }
 
 @keyframes App-logo-spin {
