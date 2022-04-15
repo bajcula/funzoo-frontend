@@ -1,7 +1,7 @@
 let apiUrl
 const apiUrls = {
     // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
-	production: 'https://boiling-gorge-49453.herokuapp.com',
+	production: 'https://funzoo-backend.herokuapp.com/',
 	development: 'http://localhost:8000',
 }
 

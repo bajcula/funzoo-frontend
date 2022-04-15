@@ -40,7 +40,6 @@ class Login extends React.Component {
       
         if (parsedResponse.user) {
             localStorage.setItem("user", JSON.stringify(parsedResponse.user))
-            console.log(window.location)
             window.location.href = window.location.origin
         } else {
             // LOGIN ERROR
@@ -50,7 +49,7 @@ class Login extends React.Component {
     }
     logout = () => {
         localStorage.clear()
-        window.location.reload()
+        window.location.href = window.location.origin
     }
     render() {
         return (
