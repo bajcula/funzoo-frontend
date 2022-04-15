@@ -1,4 +1,5 @@
 import React from "react";
+import apiUrl from "../../apiConfig";
 import Navbar from "../../Navbar/Navbar";
 
 
@@ -26,7 +27,7 @@ class Login extends React.Component {
       
         e.preventDefault()
       
-        const apiResponse = await fetch (`http://localhost:8000/auth/login/`, {
+        const apiResponse = await fetch (`${apiUrl}/auth/login/`, {
             method: "POST",
             body: JSON.stringify(this.state.possibleUser),
             headers: {
