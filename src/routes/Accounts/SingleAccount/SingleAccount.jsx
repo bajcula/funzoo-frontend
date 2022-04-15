@@ -1,5 +1,6 @@
 import React from "react"
 import { useParams } from "react-router-dom"
+import apiUrl from "../../../apiConfig";
 
 
 class SingleAccount extends React.Component {
@@ -41,7 +42,7 @@ class SingleAccount extends React.Component {
                 return (
                     <div key={`users-post-${p.id}`}>
                         <p>{p.title}</p>
-                        <img className="users-page-image" src={p.img}></img>
+                        <img className="users-page-image" src={`${apiUrl}/media/${p.img}`}></img>
                     </div>
                 )
             })}

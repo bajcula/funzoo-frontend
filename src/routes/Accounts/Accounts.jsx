@@ -14,7 +14,7 @@ class Accounts extends React.Component {
     async getAllUsers() {
         const getUsersApiReponse = await fetch(`${apiUrl}/api/users/`)
         const apiReponseParsed = await getUsersApiReponse.json()
-        console.log(apiReponseParsed)
+        
         this.setState({
             users: apiReponseParsed,
             change: !this.state.change

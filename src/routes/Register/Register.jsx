@@ -38,7 +38,7 @@ class Register extends React.Component {
         })
         console.log(createNewUserApiReq)
         if (createNewUserApiReq.status === 201) {
-            // LOGIN
+            window.location.href = `${window.location.origin}/login`
         } else {
             // HANDLE ERROR
         }
