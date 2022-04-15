@@ -1,6 +1,7 @@
 import React from "react";
 import UserCard from "./UserCard/UserCard";
 import Navbar from "../../Navbar/Navbar";
+import apiUrl from "../../apiConfig";
 
 class Accounts extends React.Component {
     constructor() {
@@ -11,7 +12,7 @@ class Accounts extends React.Component {
         }
     }
     async getAllUsers() {
-        const getUsersApiReponse = await fetch(`http://localhost:8000/api/users/`)
+        const getUsersApiReponse = await fetch(`${apiUrl}/api/users/`)
         const apiReponseParsed = await getUsersApiReponse.json()
         console.log(apiReponseParsed)
         this.setState({
