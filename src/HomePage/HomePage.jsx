@@ -9,7 +9,7 @@ class HomePage extends React.Component {
     }
     render () {
         return (
-            <div>
+            <div className="home-page-div">
                 <Navbar></Navbar>
                 <br/>
                 <Link to='/accounts'>Explore the community!</Link>

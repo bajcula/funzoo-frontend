@@ -75,28 +75,20 @@ class PostsContainer extends React.Component {
         form_data.append('authorID', this.props.currentUser.id)
         form_data.append('authorName', this.props.currentUser.name)
         console.log(form_data)
-        // const createNewPostApiRequest = await fetch(`http://localhost:8000/api/posts/`, {
-        //     method: "POST",
-        //     body: JSON.stringify(form_data),
-        //     headers: {
-        //         "Content-Type": "multipart/form-data"
-        //     }
-        // })
+
         const submitedPost = await axios.post(`${apiUrl}/api/posts/`, form_data, {
             headers:{
                 'Content-Type':'multipart/form-data'
             }
         })
         console.log(submitedPost)
-        // if (createNewPostApiRequest.status === 201) {
-        //     const createNewPostResponseParsed = await createNewPostApiRequest.json()
-        //     console.log(createNewPostResponseParsed)
-        //     this.setState({
-        //         posts: [createNewPostResponseParsed, ...this.state.posts]
-        //     })
-        // } else {
-        //     // TELL USER THERE IS AN ERROR!
-        // }
+        if (submitedPost.status === 201) {
+            this.setState({
+                posts: [submitedPost.data, ...this.state.posts]
+            })
+        } else {
+            // TELL USER THERE IS AN ERROR!
+        }
     }
 
     deletePost = async(idToDelete) => {

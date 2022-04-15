@@ -63,7 +63,7 @@ class SinglePost extends React.Component {
         return (
         <div id='single-post'>
             <h3>{this.props.post.title}</h3>
-            <img height={200} src={this.props.post.img}></img>
+            <img className="single-post-img" src={this.props.post.img}></img>
             <h6>{this.props.post.description}</h6>
             <p>Category: {this.props.post.pet_category}</p>
             <p>Location: {this.props.post.location}</p>

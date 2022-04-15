@@ -9,6 +9,11 @@
   background-color: gray;
   padding: 30px;
 }
+.home-page-div {
+  display:flex;
+  flex-direction: column;
+}
+
 .navbar h2 {
   font-size: 40px;
   padding: 40px;
@@ -17,9 +22,14 @@
 #single-post {
   border: 3px double turquoise;
   margin: 20px 40px;
+  overflow:hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.users-page-image {
+.users-page-image, .single-post-img {
+  width: auto;
+  height: auto;
   max-height: 300px;
   max-width: 300px;
 }
