@@ -39,7 +39,8 @@ class Login extends React.Component {
       
         if (parsedResponse.user) {
             localStorage.setItem("user", JSON.stringify(parsedResponse.user))
-            window.location.href = "http://localhost:3000";
+            console.log(window.location)
+            window.location.href = window.location.origin
         } else {
             // LOGIN ERROR
             window.location.reload()
