@@ -1,6 +1,6 @@
 import React from "react"
-import { useParams } from "react-router-dom"
 import apiUrl from "../../../apiConfig";
+import { Link } from "react-router-dom";
 
 
 class SingleAccount extends React.Component {
@@ -19,7 +19,7 @@ class SingleAccount extends React.Component {
         // const urlParams = new URLSearchParams(window.location.search);
         // const myParam = urlParams.get('myParam');
         // console.log(myParam)
-        const apiResponse = await fetch(`http://localhost:8000/api/users/${id}`)
+        const apiResponse = await fetch(`${apiUrl}/api/users/${id}`)
         const apiReponseParsed = await apiResponse.json()
         console.log(apiReponseParsed)
         this.setState({
@@ -36,8 +36,11 @@ class SingleAccount extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="single-account">
             <h2>single account page of {this.state.thisUser.name}</h2>
+            <Link to={`/accounts/${this.state.thisUser.id}/saved`}><h4>view {this.state.thisUser.name}'s saved posts</h4></Link>
+            
+
             {this.state.usersPosts.map(p=>{
                 return (
                     <div key={`users-post-${p.id}`}>

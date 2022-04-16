@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import SingleAccount from "../SingleAccount/SingleAccount";
+import { Link } from "react-router-dom";
 
 const UserCard = (props) => {
         return (

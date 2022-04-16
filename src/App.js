@@ -10,6 +10,8 @@ import HomePage from './HomePage/HomePage';
 import Accounts from './routes/Accounts/Accounts';
 import SingleAccount from './routes/Accounts/SingleAccount/SingleAccount';
 import GetID from './helper/GetID';
+import SingleUserSavedPosts from './routes/Accounts/SingleAccount/SingleUserSavedPosts/SingleUserSavedPosts';
+import GetIDforSavedPosts from './helper/GetIDforSavedPosts';
 
 
 class App extends React.Component {
@@ -49,7 +51,10 @@ class App extends React.Component {
             <Route path="login" element={<Login  />} />
             <Route path="register" element={<Register />} />
             <Route path="accounts" element={<Accounts />} />
-            <Route path={`accounts/:id`} element={<GetID />} />  
+            <Route path={`accounts/:id/saved`} element={ <GetIDforSavedPosts />} /> 
+            <Route path={`accounts/:id`} element={<GetID />} />
+
+            
             {/* <Route path="posts" element={<Posts />} /> */}
             <Route
             path="*"
