@@ -46,7 +46,7 @@ class SingleAccount extends React.Component {
         })
     }
     getUsersPosts = async(id) => {
-        const apiResponse = await fetch(`http://localhost:8000/api/posts/user/${id}`)
+        const apiResponse = await fetch(`${apiUrl}/api/posts/user/${id}`)
         const apiReponseParsed = await apiResponse.json()
 
         this.setState({
