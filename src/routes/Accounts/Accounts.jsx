@@ -2,6 +2,7 @@ import React from "react";
 import UserCard from "./UserCard/UserCard";
 import Navbar from "../../Navbar/Navbar";
 import apiUrl from "../../apiConfig";
+import FooterComp from "../../FooterComp/FooterComp";
 
 class Accounts extends React.Component {
     constructor() {
@@ -26,15 +27,19 @@ class Accounts extends React.Component {
     // IF THERE IS TIME MAKE SOME KINF OF ANIMATION WHEN ENTERING THE PAGE
     render(){
         return (
-            <div>
+            <div className="accounts-page">
                 <Navbar></Navbar>
-                <h1>Welcome to the FUNZOO community!</h1>
-                {/* {this.state.users !== [] && */}
-                {this.state.users.map(u=>{
-                    return (
-                        <UserCard key={`user-${u.id}`} user={u}></UserCard>
-                    )
-                })}
+                <div className="accounts-page-div">
+                    <h4 className="community-head">We are proud to have {this.state.users.length} members of the FUNZOO FAMILY.</h4>
+                    <ul>
+                    {this.state.users.map(u=>{
+                        return (
+                            <li key={`user-${u.id}`}><UserCard  user={u}></UserCard></li>
+                        )
+                    })}
+                    </ul>
+                </div>
+                <FooterComp></FooterComp>
             </div>
         )
     }

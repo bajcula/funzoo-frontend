@@ -10,7 +10,11 @@ import HomePage from './HomePage/HomePage';
 import Accounts from './routes/Accounts/Accounts';
 import SingleAccount from './routes/Accounts/SingleAccount/SingleAccount';
 import GetID from './helper/GetID';
-
+import SingleUserSavedPosts from './routes/Accounts/SingleAccount/SingleUserSavedPosts/SingleUserSavedPosts';
+import GetIDforSavedPosts from './helper/GetIDforSavedPosts';
+import GetIDforSinglePost from './helper/GetIDforSinglePost';
+import LandingPage from './LandingPage/LandingPage';
+import apiUrl from './apiConfig';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +24,8 @@ class App extends React.Component {
       currentUser: {
         email: "",
         id: ""
-      }
+      },
+      posts: []
     })
   }
   getUser = () => {
@@ -32,6 +37,26 @@ class App extends React.Component {
     }
     return false
   }
+  getPosts = async() => {
+    const getPostsApiReponse = await fetch(`${apiUrl}/api/posts/`)
+    const apiReponseParsed = await getPostsApiReponse.json()
+    console.log(apiReponseParsed)
+    this.shufflePosts(apiReponseParsed)
+    this.setState({
+        posts: apiReponseParsed
+    })
+  }
+  shufflePosts(array) {
+    let i = array.length - 1;
+    for (; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+  
   componentDidMount(){
     const currentUser = this.getUser()
     if (currentUser) {
@@ -39,18 +64,22 @@ class App extends React.Component {
         currentUser: currentUser
       })
     }
+    this.getPosts()
   }
   render(){
     return (
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path="" element={<HomePage name='home' getUser={this.getUser} currentUser={this.state.currentUser} />} />
+            <Route path="" element={<LandingPage posts={this.state.posts} name='home' getUser={this.getUser} currentUser={this.state.currentUser} />} />
             <Route path="login" element={<Login  />} />
             <Route path="register" element={<Register />} />
+            <Route path="home" element={<HomePage name='home' getUser={this.getUser} currentUser={this.state.currentUser} />} />
             <Route path="accounts" element={<Accounts />} />
-            <Route path={`accounts/:id`} element={<GetID />} />  
-            {/* <Route path="posts" element={<Posts />} /> */}
+            <Route path="accounts/:id/saved" element={ <GetIDforSavedPosts />} /> 
+            <Route path="accounts/:id" element={<GetID currentUser={this.state.currentUser}/>} />
+            <Route path="posts" element={<PostsContainer getUser={this.getUser} />} />
+            <Route path="posts/:id" element={<GetIDforSinglePost user={this.state.currentUser} />} />
             <Route
             path="*"
             element={
