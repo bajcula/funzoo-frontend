@@ -32,7 +32,11 @@
 }
 
 .add-new-para {
-  font-size: 20px;
+  font-size: 16px;
+  margin: 10px 20px;
+}
+#add-new-btn {
+  margin-bottom: 20px;
 }
 #delete-icon {
   color: white;
@@ -115,7 +119,7 @@
   color: rgb(155, 34, 155);
   text-shadow: 1px 1px white;
 }
-.home-page-div {
+/* .home-page-div {
   display:flex;
   flex-direction: column;
   background-color: #e6e6e6;
@@ -124,7 +128,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
+} */
 #nav-span {
   font-weight: 900;
 }
@@ -148,6 +152,9 @@
 .purple {
   color:#9B229B
 }
+.black {
+  color: black;
+}
 .banner-container {
   background-image: url('/public/navbanner2.jpeg');
   background-position:center;
@@ -159,15 +166,16 @@
   border: 3px  #9B229B dashed;
   border-bottom: none;
 }
-.register-page {
+/* .register-page {
   background-image: url('/public/abc.avif');
   min-height: 100vh;
   display:flex;
   flex-direction: column;
   justify-content: space-between;
-}
+} */
 .register-page-div{
-  width: 90%;
+  width: 95%;
+  align-self: center;
 }
 .register-page-div div {
   width: 100%;
@@ -180,21 +188,23 @@
 }
 .register-page-div div input {
   float:right;
+  margin-right: 24px;
   min-height: 30px;
-  
 }
 .edit-modal {
   width: 90vw;
 }
-#single-post {
-  border: 3px double turquoise;
-  margin: 20px 40px;
+.single-post-div {
+  margin: 10px;
   overflow:hidden;
   display: flex;
   flex-direction: column;
   place-items: center;
 }
-.landing-page {
+.home-title {
+  margin-bottom: 20px;
+}
+.landing-page, .home-page-div, .register-page, .accounts-page, .single-account, .single-post, .saved-posts {
   background-color: #e6e6e6;
   background-image: url('/public/abc.avif');
   -webkit-background-size: cover;
@@ -205,6 +215,9 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
+}
+.register-page {
+  min-height: 103vh;
 }
 .landing-page-div {
   display:flex;
@@ -229,7 +242,6 @@
 }
 .user-card {
   margin: 20px;
-  border: 3px solid red;
 }
 .single-account {
   display: flex;

@@ -8,6 +8,8 @@ import Form from 'react-bootstrap/Form'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import Navbar from "../../../Navbar/Navbar";
+import FooterComp from "../../../FooterComp/FooterComp";
 const style = {
     position: 'absolute',
     top: '50%',
@@ -18,7 +20,6 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-
 
 class OtherSinglePostContainer extends React.Component {
     constructor(props){
@@ -33,10 +34,6 @@ class OtherSinglePostContainer extends React.Component {
         this.handleOpen = this.handleOpen.bind(this)
     }
     updatePost = async(idToUpdate) => {
-        console.log(this.state.updatedPost)
-        // const postToSend = {
-        //     ...this.state.updatedPost,
-        // }
         const updatePostApiReponse = await fetch(`${apiUrl}/api/posts/${idToUpdate}/`, {
             method: "PUT",
             body: JSON.stringify(this.state.updatedPost),
@@ -63,7 +60,6 @@ class OtherSinglePostContainer extends React.Component {
             }
         })
     }
-    
     handlerButtons = (choice) => {
         this.setState({
             updatedPost: {
@@ -77,7 +73,6 @@ class OtherSinglePostContainer extends React.Component {
             this.handlerButtons(e.target.id)
         }
     }
-
     savePost = async(e) => {
         e.preventDefault()
         const currentUser = this.props.currentUser
@@ -89,7 +84,7 @@ class OtherSinglePostContainer extends React.Component {
             }
         })
         // window.location.href = `${window.location.origin}/api/posts/${this.props.post.id}`
-        if (likedPost.status == 200) {
+        if (likedPost.status === 200) {
             let newUsersLikedByArr = this.state.post.users_liked_by
             newUsersLikedByArr.push(currentUser.id)
             this.setState({
@@ -100,7 +95,6 @@ class OtherSinglePostContainer extends React.Component {
             })
         }
         
-
     }
     unsavePost = async(e) => {
         e.preventDefault()
@@ -112,7 +106,7 @@ class OtherSinglePostContainer extends React.Component {
                 "Content-Type": "application/json",
             }
         })
-        if (unlikedPost.status == 200) {
+        if (unlikedPost.status === 200) {
             let newUsersLikedByArr = this.state.post.users_liked_by
             newUsersLikedByArr.pop(currentUser.id)
             this.setState({
@@ -133,10 +127,10 @@ class OtherSinglePostContainer extends React.Component {
             openModal: false
         })
     }
- 
     getPost = async() => {
         const getPostsApiReponse = await fetch(`${apiUrl}/api/posts/${this.props.id}`)
         const apiReponseParsed = await getPostsApiReponse.json()
+        console.log(apiReponseParsed)
         this.setState({
             post: apiReponseParsed,
             updatedPost: apiReponseParsed
@@ -158,23 +152,21 @@ class OtherSinglePostContainer extends React.Component {
     }
     componentDidMount(){
         this.getPost()
-
     }
-
     render(){
         return (
-        <div id='single-post'>
-            
+        <div className='single-post'>
+            <Navbar></Navbar>
+            <div className="single-post-div">
             <h3>{this.state.post.title}</h3>
             <img className="single-post-img" src={this.state.post.img}></img>
             <h6>{this.state.post.description}</h6>
             <p>Category: {this.state.post.pet_category}</p>
             <p>Location: {this.state.post.location}</p>
             <p>Created by: {this.state.post.authorName}</p>
-            <p>Cretated at: {this.state.post.created_at}</p>
+            <p>Created at: {this.state.post.created_at}</p>
         
-
-            {this.props.currentUser?.id == this.state.post?.authorID &&
+            {this.props.currentUser?.id === this.state.post?.authorID?
             <>
             <Button onClick={()=>this.props.deletePost(this.state.post.id)} id='delete'>
                 <label>DELETE</label>
@@ -182,28 +174,22 @@ class OtherSinglePostContainer extends React.Component {
             </Button>
             <Button id='edit' onClick={this.handleOpen}>EDIT POST INFO</Button>
             </>
-            }
-            
+            :
+            <>
             {this.state.post.users_liked_by?.includes(this.props.currentUser?.id)?
             <Button onClick={this.unsavePost} id="like">
                 <label>UNLIKE</label>
                 <RemoveCircleIcon id='unlike-icon'  />
             </Button>
             :
-            
             <Button onClick={this.savePost} id="unlike">
                 <label>LIKE</label>
                 <FavoriteIcon id='like-icon'  />
             </Button>
             }
+            </>
+            }
 
-
-
-            
- 
-            
-            
-           
             <Modal
             open={this.state.openModal}
             onClose={this.handleClose}
@@ -225,7 +211,6 @@ class OtherSinglePostContainer extends React.Component {
                     <label htmlFor="description">Description:</label>
                     <input onChange={this.handleUpdatePostChange} name="description" value={this.state.updatedPost.description}></input>
                 </div>
-
                 <div className="form-row-category">
                         <label htmlFor="pet_category">Category:</label>
                         {['dog', 'cat', 'other'].map((option) => (
@@ -263,6 +248,8 @@ class OtherSinglePostContainer extends React.Component {
                 </Typography>
             </Box>
             </Modal>
+        </div>
+        <FooterComp></FooterComp>
         </div>
         )
     }

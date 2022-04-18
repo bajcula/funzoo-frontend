@@ -1,16 +1,12 @@
 import './App.css';
-import {Link} from 'react-router-dom';
 import PostsContainer from './HomePage/PostsContainer/PostsContainer';
-import Navbar from './Navbar/Navbar';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './routes/Login/Login';
 import Register from './routes/Register/Register';
 import HomePage from './HomePage/HomePage';
 import Accounts from './routes/Accounts/Accounts';
-import SingleAccount from './routes/Accounts/SingleAccount/SingleAccount';
 import GetID from './helper/GetID';
-import SingleUserSavedPosts from './routes/Accounts/SingleAccount/SingleUserSavedPosts/SingleUserSavedPosts';
 import GetIDforSavedPosts from './helper/GetIDforSavedPosts';
 import GetIDforSinglePost from './helper/GetIDforSinglePost';
 import LandingPage from './LandingPage/LandingPage';
@@ -76,7 +72,7 @@ class App extends React.Component {
             <Route path="register" element={<Register />} />
             <Route path="home" element={<HomePage name='home' getUser={this.getUser} currentUser={this.state.currentUser} />} />
             <Route path="accounts" element={<Accounts />} />
-            <Route path="accounts/:id/saved" element={ <GetIDforSavedPosts />} /> 
+            <Route path="accounts/:id/saved" element={ <GetIDforSavedPosts currentUser={this.state.currentUser} />} /> 
             <Route path="accounts/:id" element={<GetID currentUser={this.state.currentUser}/>} />
             <Route path="posts" element={<PostsContainer getUser={this.getUser} />} />
             <Route path="posts/:id" element={<GetIDforSinglePost user={this.state.currentUser} />} />
