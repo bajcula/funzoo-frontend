@@ -1,5 +1,8 @@
 import React from "react";
 import apiUrl from "../../apiConfig";
+import Navbar from "../../Navbar/Navbar";
+import FooterComp from "../../FooterComp/FooterComp";
+import Button from '@mui/material/Button';
 
 class Register extends React.Component {
     constructor(){
@@ -45,7 +48,9 @@ class Register extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="register-page">
+                <Navbar></Navbar>
+                <div className="register-page-div">
                 <form onSubmit={this.createNewUser} encType='multipart/form'>
                     <div>
                         <label htmlFor="email">Email:</label>
@@ -64,8 +69,11 @@ class Register extends React.Component {
                         <input onChange={this.handleNewUserChange} name="password2"></input>
                     </div>
 
-                <button type="submit" >CREATE PROFILE</button>
+                <Button size="small" variant="contained" color="success" type="submit" >CREATE PROFILE</Button>
+
                 </form>
+                </div>
+                <FooterComp></FooterComp>
             </div>
         )
     }

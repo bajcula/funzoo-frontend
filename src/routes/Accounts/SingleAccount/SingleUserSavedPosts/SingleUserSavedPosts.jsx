@@ -7,7 +7,6 @@ class SingleUserSavedPosts extends React.Component {
         this.state = {
             usersSavedPosts: []
         }
-
     }
     getUsersSavedPosts = async(id) => {
         const apiResponse = await fetch(`${apiUrl}/api/posts/user/${id}/saved`)
@@ -25,17 +24,18 @@ class SingleUserSavedPosts extends React.Component {
             <div>
                 {this.state.usersSavedPosts.map(p=>{
                     return (
-                        <div key={`users-post-${p.id}`}>
-                            <p>{p.title}</p>
-                            <img className="users-page-image" src={`${apiUrl}/media/${p.img}`}></img>
-                        </div>
+                        <a key={`users-post-${p.id}`} href={`${window.location.origin}/posts/${p.id}`}>
+                            <div >
+                                <p>{p.title}</p>
+                                <img className="users-page-image" src={`${apiUrl}/media/${p.img}`}></img>
+                            </div>
+                        </a>
                     )
                 })}
             </div>
             
         )
     }
-
 }
 
 export default SingleUserSavedPosts
