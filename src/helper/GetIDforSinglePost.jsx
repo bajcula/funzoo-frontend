@@ -24,11 +24,8 @@ function GetIDforSinglePost(props) {
         <div>
             <OtherSinglePostContainer
             currentUser={props.user} // GOT
-            // handler={handler}
             id = {id}
             deletePost={deletePost}
-            
-            
             >  
             </OtherSinglePostContainer>
         </div>

@@ -5,6 +5,7 @@ import Navbar from "../../../Navbar/Navbar";
 import axios from "axios";
 import NewPost from "../../../HomePage/PostsContainer/NewPost/NewPost";
 import { Button } from "@mui/material";
+import FooterComp from "../../../FooterComp/FooterComp";
 
 class SingleAccount extends React.Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class SingleAccount extends React.Component {
             },
             showNewPost: false
         }
+        this.createNewPost = this.createNewPost.bind(this)
         this.toggleNewPostForm = this.toggleNewPostForm.bind(this)
     }
     componentDidMount() {
@@ -32,10 +34,8 @@ class SingleAccount extends React.Component {
         })
     }
     getUserInfo = async(id) => {
-
         const apiResponse = await fetch(`${apiUrl}/api/users/${id}`)
         const apiReponseParsed = await apiResponse.json()
-
         this.setState({
             pageUser: apiReponseParsed
         })
@@ -55,6 +55,13 @@ class SingleAccount extends React.Component {
     }
     createNewPost = async(e) => {
         e.preventDefault()
+        let data = new FormData()
+        data.append('file', this.state.newPost.img)
+        data.append('upload_preset', 'funzoo')
+        console.log(this.state.newPost.img)
+        const imageUpload = await axios.post('https://api.cloudinary.com/v1_1/branislav/image/upload', data)
+        console.log(imageUpload.data.url)
+        this.state.newPost.img = await imageUpload.data.url
         let form_data = new FormData();
         form_data.append('title', this.state.newPost.title)
         form_data.append('pet_category', this.state.newPost.pet_category)
@@ -69,7 +76,7 @@ class SingleAccount extends React.Component {
             }
         })
         if (submitedPost.status === 201) {
-            submitedPost.data.img = submitedPost.data.img.replace("http://localhost:8000/media/", "");
+            // submitedPost.data.img = submitedPost.data.img.replace("http://localhost:8000/media/", "");
             this.setState({
                 usersPosts: [submitedPost.data, ...this.state.usersPosts],
                 showNewPost: false
@@ -78,6 +85,7 @@ class SingleAccount extends React.Component {
             // TELL USER THERE IS AN ERROR!
         }
     }
+
     handleNewPostChange = (e) => {
         this.setState({
             newPost: {
@@ -106,63 +114,58 @@ class SingleAccount extends React.Component {
     }
     render() {
         return (
-            <>
-            <Navbar></Navbar>
             <div className="single-account">
-            <h2>single account page of {this.state.pageUser.name}</h2>
-            <Link className="link" to={`/accounts/${this.state.pageUser.id}/saved`}>
-                <Button id='saved-link-btn'>
-                    {this.props.theID == this.props.currentUser.id?
-                    <p>Check out my favorite posts</p>
-                    :       
-                    <p>Click HERE to check out <br/> {this.state.pageUser.name}'s saved posts</p>
-                    }
-                </Button>
-            </Link>
+                <Navbar></Navbar>
+                <div className="single-account-div">
+                <h2>single account page of {this.state.pageUser.name}</h2>
+                <Link className="link" to={`/accounts/${this.state.pageUser.id}/saved`}>
+                    <Button id='saved-link-btn'>
+                        {this.props.theID == this.props.currentUser.id?
+                        <p>Check out my favorite posts</p>
+                        :       
+                        <p>Click HERE to check out <br/> {this.state.pageUser.name}'s saved posts</p>
+                        }
+                    </Button>
+                </Link>
+                {this.props.theID == this.props.currentUser?.id &&
+                <div className="add-new">
+                {this.state.showNewPost?
+                    <NewPost
+                    handleRadioButtons={this.handleRadioButtons}
+                    createNewPost={this.createNewPost}
+                    handleNewPostChange={this.handleNewPostChange}
+                    handleImageChange={this.handleImageChange}
+                    >
+                    </NewPost>
+                :
+                <div>
+                    <p className="add-new-para">They make us angry, they make us laugh! Share your funniest pet pictures with the world!</p>
+                    <Button
+                    onClick={this.toggleNewPostForm}
+                    className="glow-on-hover"
+                    id="add-new-btn"
+                    variant="contained"
+                    >
+                    ADD NEW POST
+                    </Button>
+                </div>
+                }
+                </div>
+                }
 
-
-
-
-
-            {this.props.theID == this.state.currentUser?.id &&
-            <div className="add-new">
-            {this.state.showNewPost?
-                <NewPost
-                handleRadioButtons={this.handleRadioButtons}
-                createNewPost={this.createNewPost}
-                handleNewPostChange={this.handleNewPostChange}
-                handleImageChange={this.handleImageChange}
-                >
-                </NewPost>
-            :
-            <div>
-                <p className="add-new-para">They make us angry, they make us laugh! Share your funniest pet pictures with the world!</p>
-                <Button
-                onClick={this.toggleNewPostForm}
-                className="glow-on-hover"
-                id="add-new-btn"
-                variant="contained"
-                >
-                ADD NEW POST
-                </Button>
+                {this.state.usersPosts.map(p=>{
+                    return (
+                        <a key={`users-post-${p.id}`} href={`${window.location.origin}/posts/${p.id}`}>
+                        <div >
+                        <p>{p.title}</p>
+                            <img className="users-page-image" src={p.img}></img>
+                        </div>
+                        </a>
+                    )
+                })}
+                </div>
+                <FooterComp></FooterComp>
             </div>
-            }
-            </div>
-            }
-
-
-            {this.state.usersPosts.map(p=>{
-                return (
-                    <a key={`users-post-${p.id}`} href={`${window.location.origin}/posts/${p.id}`}>
-                    <div >
-                       <p>{p.title}</p>
-                        <img className="users-page-image" src={`${apiUrl}/media/${p.img}`}></img>
-                    </div>
-                    </a>
-                )
-            })}
-            </div>
-            </>
         )
     }
 }

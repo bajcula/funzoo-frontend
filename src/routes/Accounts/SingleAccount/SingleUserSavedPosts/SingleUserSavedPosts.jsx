@@ -1,5 +1,7 @@
 import React from "react"
 import apiUrl from "../../../../apiConfig"
+import FooterComp from "../../../../FooterComp/FooterComp"
+import Navbar from "../../../../Navbar/Navbar"
 
 class SingleUserSavedPosts extends React.Component {
     constructor(props){
@@ -21,7 +23,11 @@ class SingleUserSavedPosts extends React.Component {
     }
     render(){
         return (
-            <div>
+            <div className="saved-posts">
+                <Navbar></Navbar>
+                {this.state.usersSavedPosts.length === 0 &&
+                <h3 className="purple">This user has not saved any posts yet.</h3>
+                }
                 {this.state.usersSavedPosts.map(p=>{
                     return (
                         <a key={`users-post-${p.id}`} href={`${window.location.origin}/posts/${p.id}`}>
@@ -32,6 +38,7 @@ class SingleUserSavedPosts extends React.Component {
                         </a>
                     )
                 })}
+                <FooterComp></FooterComp>
             </div>
             
         )

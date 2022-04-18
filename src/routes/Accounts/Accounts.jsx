@@ -30,7 +30,7 @@ class Accounts extends React.Component {
             <div className="accounts-page">
                 <Navbar></Navbar>
                 <div className="accounts-page-div">
-                    <h4 className="community-head">We are proud to have {this.state.users.length} members of the FUNZOO FAMILY.</h4>
+                    <h4 className="community-head">We are proud to have {this.state.users.length} members of the FUNZOO FAMILY already.</h4>
                     <ul>
                     {this.state.users.map(u=>{
                         return (
