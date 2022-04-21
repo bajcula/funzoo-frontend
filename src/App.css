@@ -293,6 +293,9 @@
 .login-page-div input {
     min-height: 30px;
 }
+.accounts-page-ul {
+  list-style: none;
+}
 @media only screen and (min-width: 768px) {
   .home-container, .landing-page-img-div {
     display: grid;
