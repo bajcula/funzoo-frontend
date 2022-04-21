@@ -13,7 +13,6 @@
 #sign-in-btn, #sign-up-btn {
   height: 34px;
 }
-
 .sign-in-out-div {
   margin-top: 15px;
 }
@@ -256,7 +255,6 @@
   margin: 10px;
   gap: 10px;
 }
-
 .mb-3 {
   display: flex;
   justify-content: center;
@@ -265,12 +263,10 @@
   width: 200px;
   height: 40px;
 }
-
 .home-container {
   display: flex;
   flex-direction: column;
 }
-
 @media only screen and (min-width: 768px) {
   .home-container, .landing-page-img-div {
     display: grid;

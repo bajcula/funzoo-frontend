@@ -3,7 +3,6 @@ import apiUrl from "../../apiConfig";
 import Navbar from "../../Navbar/Navbar";
 import { Button } from "@mui/material";
 
-
 class Login extends React.Component {
     constructor(props){
         super(props)
@@ -36,7 +35,6 @@ class Login extends React.Component {
         })
         const parsedResponse = await apiResponse.json()
         console.log(parsedResponse)
-      
         if (parsedResponse.user) {
             localStorage.setItem("user", JSON.stringify(parsedResponse.user))
             window.location.href = window.location.origin
@@ -55,7 +53,7 @@ class Login extends React.Component {
             <div className="login-page">
                 <Navbar></Navbar>
                 <div className="login-page-div">
-                    {this.currentUser.email?
+                    {this.props.currentUser.email?
                     <>
                         <p>USER LOGGED IN</p>
                         <Button className="glow-on-hover" onClick={this.logout}>Logout</Button>

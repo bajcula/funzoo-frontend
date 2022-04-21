@@ -50,7 +50,7 @@ class Navbar extends React.Component {
               <div id="nav-buttons">
                 <Link className="link"  to='/home'><Button id="gallery-btn" className="glow-on-hover" variant="outlined">Gallery</Button></Link>
                 <Link className="link"  to='/accounts'><Button id="community-btn" className="glow-on-hover" variant="outlined">Community</Button></Link>
-                <Link className="link"  to={`/accounts/${this.state.theCurrentUser.id}`}><Button id="myprofile-btn" className="glow-on-hover" variant="outlined">My profile</Button></Link>
+                <Link className="link"  to={`/accounts/${this.state.theCurrentUser.id}`}><Button id="myprofile-btn" className="glow-on-hover" variant="outlined">Profile</Button></Link>
                 <Button className="glow-on-hover" id="sign-out-btn" onClick={this.logout}>Logout</Button>
               </div>
               :

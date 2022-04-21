@@ -68,7 +68,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route path="" element={<LandingPage posts={this.state.posts} name='home' getUser={this.getUser} currentUser={this.state.currentUser} />} />
-            <Route path="login" element={<Login  />} />
+            <Route path="login" element={<Login currentUser={this.state.currentUser} />} />
             <Route path="register" element={<Register />} />
             <Route path="home" element={<HomePage name='home' getUser={this.getUser} currentUser={this.state.currentUser} />} />
             <Route path="accounts" element={<Accounts />} />
