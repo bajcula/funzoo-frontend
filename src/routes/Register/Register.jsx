@@ -17,6 +17,7 @@ class Register extends React.Component {
         }
     }
     handleNewUserChange = (e) => {
+        if (e.target.password1.value === e.target.password2)
         this.setState({
             newUser: {
                 ...this.state.newUser,
@@ -26,24 +27,30 @@ class Register extends React.Component {
     }
     createNewUser = async(e) => {
         e.preventDefault()
-        const theUserToSend = {
-            email: this.state.newUser.email,
-            name: this.state.newUser.name,
-            password: this.state.newUser.password2
-        }        
-        console.log(theUserToSend)
-        const createNewUserApiReq = await fetch(`${apiUrl}/api/users/`, {
-            method: "POST",
-            body: JSON.stringify(theUserToSend),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        console.log(createNewUserApiReq)
-        if (createNewUserApiReq.status === 201) {
-            window.location.href = `${window.location.origin}/login`
+        if (this.state.newUser.password1 !== this.state.newUser.password2) {
+            alert(`Your password don't match`)
+        } else if (!this.state.newUser.email.includes('@')) {
+            alert(`Your email needs to contain @`)
         } else {
-            // HANDLE ERROR
+            const theUserToSend = {
+                email: this.state.newUser.email,
+                name: this.state.newUser.name,
+                password: this.state.newUser.password2
+            }        
+            console.log(theUserToSend)
+            const createNewUserApiReq = await fetch(`${apiUrl}/api/users/`, {
+                method: "POST",
+                body: JSON.stringify(theUserToSend),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log(createNewUserApiReq)
+            if (createNewUserApiReq.status === 201) {
+                window.location.href = `${window.location.origin}/login`
+            } else {
+                alert(`Unfortunately, there has been an error. Please try again.`)
+            }
         }
     }
     render() {
@@ -62,11 +69,11 @@ class Register extends React.Component {
                     </div>
                     <div>
                         <label htmlFor="password1">Password:</label>
-                        <input onChange={this.handleNewUserChange} name="password1"></input>
+                        <input type='password' onChange={this.handleNewUserChange} name="password1"></input>
                     </div>
                     <div>
                         <label htmlFor="password2">Confirm password:</label>
-                        <input onChange={this.handleNewUserChange} name="password2"></input>
+                        <input type='password' onChange={this.handleNewUserChange} name="password2"></input>
                     </div>
 
                 <Button size="small" variant="contained" id="create-btn" type="submit" >CREATE PROFILE</Button>

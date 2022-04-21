@@ -67,9 +67,9 @@ class Login extends React.Component {
                         </div>
                         <div>
                             <label htmlFor="password">PASSWORD:</label>
-                            <input onChange={this.handleLoginChange} id='password' name="password"></input>
+                            <input type='password' name="password"></input>
                         </div>
-                        <Button id='log-in-btn' className="glow-on-hover">Log In</Button>
+                        <Button type='submit' id='log-in-btn' className="glow-on-hover">Log In</Button>
                     </form>
                     }
                 </div>
