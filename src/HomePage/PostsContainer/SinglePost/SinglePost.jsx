@@ -56,7 +56,7 @@ class SinglePost extends React.Component {
             <p><b>Category:</b> {this.props.post.pet_category}</p>
             <p><b>Location:</b> {this.props.post.location}</p>
             <p><b>Created by:</b> {this.props.post.authorName}</p>
-            <p><b>Date created:</b> {this.props.post.created_at.slice(0,10)}</p>
+            <p><b>Date created:</b> {this.props.post.created_at?.slice(0,10)}</p>
             {this.props.currentUser.id === this.props.post.authorID?
             <Button className="single-card-btn">
                 <label>UNLIKE</label>

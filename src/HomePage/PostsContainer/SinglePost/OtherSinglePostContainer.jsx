@@ -163,7 +163,7 @@ class OtherSinglePostContainer extends React.Component {
             <p><b>Category:</b> {this.state.post.pet_category}</p>
             <p><b>Location:</b> {this.state.post.location}</p>
             <p><b>Created by:</b> {this.state.post.authorName}</p>
-            <p><b>Date created:</b> {this.state.post.created_at.slice(0,10)}</p>
+            <p><b>Date created:</b> {this.state.post.created_at?.slice(0,10)}</p>
             {this.props.currentUser?.id === this.state.post?.authorID?
             <>
             <Button onClick={()=>this.props.deletePost(this.state.post.id)} id='delete'>
