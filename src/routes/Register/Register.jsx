@@ -51,7 +51,7 @@ class Register extends React.Component {
             <div className="register-page">
                 <Navbar></Navbar>
                 <div className="register-page-div">
-                <form onSubmit={this.createNewUser} encType='multipart/form'>
+                <form className="register-form" onSubmit={this.createNewUser} encType='multipart/form'>
                     <div>
                         <label htmlFor="email">Email:</label>
                         <input onChange={this.handleNewUserChange} name="email"></input>
@@ -69,7 +69,7 @@ class Register extends React.Component {
                         <input onChange={this.handleNewUserChange} name="password2"></input>
                     </div>
 
-                <Button size="small" variant="contained" color="success" type="submit" >CREATE PROFILE</Button>
+                <Button size="small" variant="contained" id="create-btn" type="submit" >CREATE PROFILE</Button>
 
                 </form>
                 </div>

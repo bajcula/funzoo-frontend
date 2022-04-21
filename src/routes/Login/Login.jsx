@@ -2,6 +2,7 @@ import React from "react";
 import apiUrl from "../../apiConfig";
 import Navbar from "../../Navbar/Navbar";
 import { Button } from "@mui/material";
+import FooterComp from "../../FooterComp/FooterComp";
 
 class Login extends React.Component {
     constructor(props){
@@ -53,24 +54,26 @@ class Login extends React.Component {
             <div className="login-page">
                 <Navbar></Navbar>
                 <div className="login-page-div">
-                    {this.props.currentUser.email?
+                    {this.props.currentUser.email !== "" ?
                     <>
-                        <p>USER LOGGED IN</p>
-                        <Button className="glow-on-hover" onClick={this.logout}>Logout</Button>
+                        <p>You are logged in already.</p>
+                        <Button id='log-out-btn' className="glow-on-hover" onClick={this.logout}>Logout</Button>
                     </>
-                        :
-                    <form onSubmit={this.loginTry}>
-                        <br/>
-                        <br/>
-                        email:<input onChange={this.handleLoginChange} name="email"></input>
-                        <br/>
-                        <br/>
-                        password:<input onChange={this.handleLoginChange} name="password"></input>
-                        <br/>
-                        <Button className="glow-on-hover">Log In</Button>
+                    :
+                    <form className="login-form" onSubmit={this.loginTry}>
+                        <div>
+                            <label htmlFor="email">EMAIL:</label>
+                            <input onChange={this.handleLoginChange} id='email' name="email"></input>
+                        </div>
+                        <div>
+                            <label htmlFor="password">PASSWORD:</label>
+                            <input onChange={this.handleLoginChange} id='password' name="password"></input>
+                        </div>
+                        <Button id='log-in-btn' className="glow-on-hover">Log In</Button>
                     </form>
                     }
                 </div>
+                <FooterComp></FooterComp>
             </div>
         )
     }
