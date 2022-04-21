@@ -148,7 +148,6 @@ class OtherSinglePostContainer extends React.Component {
                 category: 'other'
             })
         }
-        
     }
     componentDidMount(){
         this.getPost()
@@ -161,10 +160,10 @@ class OtherSinglePostContainer extends React.Component {
             <h3>{this.state.post.title}</h3>
             <img className="single-post-img" src={this.state.post.img}></img>
             <h6>{this.state.post.description}</h6>
-            <p>Category: {this.state.post.pet_category}</p>
-            <p>Location: {this.state.post.location}</p>
-            <p>Created by: {this.state.post.authorName}</p>
-            <p>Date created: {this.state.post.created_at.slice(0,11)}</p>
+            <p><b>Category:</b> {this.state.post.pet_category}</p>
+            <p><b>Location:</b> {this.state.post.location}</p>
+            <p><b>Created by:</b> {this.state.post.authorName}</p>
+            <p><b>Date created:</b> {this.state.post.created_at.slice(0,10)}</p>
             {this.props.currentUser?.id === this.state.post?.authorID?
             <>
             <Button onClick={()=>this.props.deletePost(this.state.post.id)} id='delete'>

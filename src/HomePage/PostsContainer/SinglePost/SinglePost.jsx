@@ -53,10 +53,10 @@ class SinglePost extends React.Component {
             <a href={`${window.location.origin}/posts/${this.props.post.id}`}><h2>{this.props.post.title}</h2></a>
             <img className="single-post-img" src={this.props.post.img}></img>
             <h3>{this.props.post.description}</h3>
-            <p>Category: {this.props.post.pet_category}</p>
-            <p>Location: {this.props.post.location}</p>
-            <p>Created by: {this.props.post.authorName}</p>
-            <p>Date created: {this.props.post.created_at.slice(0,11)}</p>
+            <p><b>Category:</b> {this.props.post.pet_category}</p>
+            <p><b>Location:</b> {this.props.post.location}</p>
+            <p><b>Created by:</b> {this.props.post.authorName}</p>
+            <p><b>Date created:</b> {this.props.post.created_at.slice(0,10)}</p>
             {this.props.currentUser.id === this.props.post.authorID?
             <Button className="single-card-btn">
                 <label>UNLIKE</label>

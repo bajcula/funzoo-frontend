@@ -281,11 +281,13 @@
 }
 
 
+
 @media only screen and (min-width: 768px) {
   .home-container, .landing-page-img-div {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
+    place-items: center;
   }
   .users-page-image, .single-post-img {
     max-height: 300px;
@@ -300,7 +302,6 @@
   .home-container, .landing-page-img-div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
   }
   .users-page-image, .single-post-img, .landing-img {
     max-height: 300px;

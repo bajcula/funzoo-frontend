@@ -18,9 +18,13 @@ class LandingPage extends React.Component {
                 <Navbar></Navbar>
                 {this.props.posts[2] &&
                 <div className="landing-page-img-div">
-                    <img className="landing-img" src={this.props.posts[0].img}></img>
-                    <img className="landing-img" src={this.props.posts[1].img}></img>
-                    <img className="landing-img" src={this.props.posts[2].img}></img>
+                 
+                        <img className="landing-img" src={this.props.posts[0].img}></img>
+                    
+                        <img className="landing-img" src={this.props.posts[1].img}></img>
+                   
+                        <img className="landing-img" src={this.props.posts[2].img}></img>
+        
                 </div>
                 }
                 <FooterComp></FooterComp>
