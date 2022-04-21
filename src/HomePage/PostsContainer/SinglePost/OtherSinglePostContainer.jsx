@@ -243,7 +243,7 @@ class OtherSinglePostContainer extends React.Component {
                     <label htmlFor="location">Location:</label>
                     <input onChange={this.handleUpdatePostChange} name="location" value={this.state.updatedPost.location}></input>
                 </div>
-                <Button className="glow-on-hover" type="submit">SUBMIT</Button>
+                <Button id='submit-edit-btn' className="glow-on-hover" type="submit">SUBMIT</Button>
             </form>
         </div>
                 </Typography>

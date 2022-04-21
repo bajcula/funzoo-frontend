@@ -23,7 +23,7 @@
   font-size: 18px;
   color: white;
 }
-#log-in-btn {
+#log-in-btn, #submit-new-btn, #submit-edit-btn {
   color: white;
   width: 120px;
 }
@@ -185,6 +185,7 @@
 }
 .edit-modal {
   width: 90vw;
+  max-width: 440px;
 }
 .single-post-div {
   margin: 10px;
@@ -268,7 +269,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px;
   color:#9B229B;
   gap: 10px;
   font-weight: 700;

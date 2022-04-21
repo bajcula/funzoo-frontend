@@ -40,7 +40,7 @@ class NewPost extends React.Component {
                         <label htmlFor="location">Location:</label>
                         <input onChange={this.props.handleNewPostChange} name="location"></input>
                     </div>
-                    <button type="submit">SUBMIT</button>
+                    <Button className="glow-on-hover" id='submit-new-btn' type="submit">SUBMIT</Button>
                 </form>
             </div>
         )
