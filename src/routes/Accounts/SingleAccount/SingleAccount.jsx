@@ -138,6 +138,7 @@ class SingleAccount extends React.Component {
                     createNewPost={this.createNewPost}
                     handleNewPostChange={this.handleNewPostChange}
                     handleImageChange={this.handleImageChange}
+                    toggleNewPostForm = {this.toggleNewPostForm}
                     >
                     </NewPost>
                 :

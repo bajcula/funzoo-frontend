@@ -23,7 +23,7 @@
   font-size: 18px;
   color: white;
 }
-#log-in-btn, #submit-new-btn, #submit-edit-btn {
+#log-in-btn, #submit-new-btn, #submit-edit-btn, #close-btn {
   color: white;
   width: 120px;
 }
