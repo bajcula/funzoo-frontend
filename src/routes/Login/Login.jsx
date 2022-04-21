@@ -34,18 +34,13 @@ class Login extends React.Component {
             }
         })
         const parsedResponse = await apiResponse.json()
-        console.log(parsedResponse)
+
         if (parsedResponse.user) {
             localStorage.setItem("user", JSON.stringify(parsedResponse.user))
             window.location.href = window.location.origin
         } else {
-            alert('Wrong credentials.')
-            this.setState({
-                possibleUser: {
-                    email: "",
-                    password: ""
-                }
-            })
+            alert(`${parsedResponse.details}`)
+            window.location.reload()
         }
     }
     logout = () => {
