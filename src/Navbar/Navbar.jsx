@@ -18,21 +18,22 @@ class Navbar extends React.Component {
         }
         return false
       }
-      logout = () => {
-        localStorage.clear()
+    logout = () => {
+      sessionStorage.removeItem('user');
+      localStorage.clear()
+      this.setState({
+        currentUser: {}
+      })
+      window.location.href = "https://funzoo.herokuapp.com"
+    }
+    componentDidMount(){
+      const currentUser = this.getUser()
+      if (currentUser) {
         this.setState({
-          currentUser: {}
+          currentUser: currentUser
         })
-        window.location.href = window.location.origin
       }
-      componentDidMount(){
-        const currentUser = this.getUser()
-        if (currentUser) {
-          this.setState({
-            currentUser: currentUser
-          })
-        }
-      }
+    }
     render(){
         return (
             <div className="navbar">

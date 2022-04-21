@@ -23,6 +23,7 @@ class SingleAccount extends React.Component {
             },
             showNewPost: false
         }
+ 
         this.createNewPost = this.createNewPost.bind(this)
         this.toggleNewPostForm = this.toggleNewPostForm.bind(this)
     }

@@ -47,6 +47,7 @@ class PostsContainer extends React.Component {
         return (
             <div>
                 <h4 className="purple home-title">We are proud to present you our pets gallery!</h4>
+                <div className="home-container">
                 {this.state.posts.filter(p=>p.authorID !== this.props.currentUser.id).map((p)=>{
                         return (
                             <SinglePost
@@ -58,6 +59,7 @@ class PostsContainer extends React.Component {
                             </SinglePost>
                         )
                 })}
+                </div>
             </div>
         )
     }

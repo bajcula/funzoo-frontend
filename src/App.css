@@ -275,11 +275,32 @@
   height: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.home-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .home-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
   }
-  to {
-    transform: rotate(360deg);
+  .users-page-image, .single-post-img {
+    max-height: 300px;
+    max-width: 300px;
   }
 }
+@media only screen and (min-width: 1024px) {
+  .home-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .users-page-image, .single-post-img {
+    max-height: 300px;
+    max-width: 300px;
+  }
+}
+
