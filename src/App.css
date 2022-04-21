@@ -27,6 +27,9 @@
   color: white;
   width: 120px;
 }
+#submit-new-btn, #close-btn {
+  margin: 10px;
+}
 .accounts-page {
   display: flex;
   flex-direction: column;

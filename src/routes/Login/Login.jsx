@@ -39,8 +39,13 @@ class Login extends React.Component {
             localStorage.setItem("user", JSON.stringify(parsedResponse.user))
             window.location.href = window.location.origin
         } else {
-            // LOGIN ERROR
-            window.location.reload()
+            alert('Wrong credentials.')
+            this.setState({
+                possibleUser: {
+                    email: "",
+                    password: ""
+                }
+            })
         }
     }
     logout = () => {
