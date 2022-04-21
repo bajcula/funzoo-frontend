@@ -157,9 +157,9 @@ class OtherSinglePostContainer extends React.Component {
         <div className='single-post'>
             <Navbar></Navbar>
             <div className="single-post-div">
-            <h3>{this.state.post.title}</h3>
+            <h2>{this.state.post.title}</h2>
             <img className="single-post-img" src={this.state.post.img}></img>
-            <h6>{this.state.post.description}</h6>
+            <h3>{this.state.post.description}</h3>
             <p><b>Category:</b> {this.state.post.pet_category}</p>
             <p><b>Location:</b> {this.state.post.location}</p>
             <p><b>Created by:</b> {this.state.post.authorName}</p>

@@ -280,8 +280,6 @@
   flex-direction: column;
 }
 
-
-
 @media only screen and (min-width: 768px) {
   .home-container, .landing-page-img-div {
     display: grid;
@@ -303,9 +301,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
-  .users-page-image, .single-post-img, .landing-img {
+  .users-page-image, .landing-img {
     max-height: 300px;
     max-width: 300px;
+  }
+  .single-post-img {
+    max-height: 600px;
+    max-width: 700px;
   }
 }
 
