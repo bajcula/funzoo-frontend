@@ -41,7 +41,7 @@ class NewPost extends React.Component {
                         <label htmlFor="location">Location:</label>
                         <input onChange={this.props.handleNewPostChange} name="location"></input>
                     </div>
-                    <button className="close-btn" onClick={this.props.toggleNewPostForm}>CLOSE THE FORM</button>
+                    <Button id="close-btn" className="glow-on-hover" onClick={this.props.toggleNewPostForm}>CANCEL</Button>
                     <Button className="glow-on-hover" id='submit-new-btn' type="submit">SUBMIT</Button>
                 </form>
             </div>
