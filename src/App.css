@@ -33,7 +33,9 @@
   justify-content: space-between;
   min-height: 100vh;
 }
-
+.add-new {
+  margin: 25px auto;
+}
 .add-new-para {
   font-size: 16px;
   margin: 10px 20px;

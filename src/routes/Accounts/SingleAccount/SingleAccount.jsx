@@ -155,7 +155,6 @@ class SingleAccount extends React.Component {
                 }
                 </div>
                 }
-
                 {this.state.usersPosts.map(p=>{
                     return (
                         <a key={`users-post-${p.id}`} href={`${window.location.origin}/posts/${p.id}`}>
