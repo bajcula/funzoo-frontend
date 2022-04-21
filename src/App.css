@@ -171,7 +171,7 @@
   width: 95%;
   align-self: center;
 }
-.register-page-div div, .login-page-div div, .new-post-form {
+.register-page-div div, .login-page-div div, .form-row {
   width: 100%;
   display: flex;
   margin: 14px 0;
@@ -269,10 +269,6 @@
   align-items: center;
   margin: 10px;
   gap: 10px;
-}
-.form-row {
-  display:flex;
-  justify-content: space-between;
 }
 .mb-3 {
   display: flex;
