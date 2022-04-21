@@ -169,25 +169,25 @@ class OtherSinglePostContainer extends React.Component {
             <p><b>Date created:</b> {this.state.post.created_at?.slice(0,10)}</p>
             {this.props.currentUser?.id === this.state.post?.authorID?
             <>
-            <Button onClick={()=>this.props.deletePost(this.state.post.id)} id='delete'>
-                <label>DELETE</label>
-                <DeleteForeverIcon id='delete-icon'  />
-            </Button>
-            <Button id='edit' onClick={this.handleOpen}>EDIT POST INFO</Button>
+                <Button id='edit' onClick={this.handleOpen}>EDIT POST INFO</Button>
+                <Button onClick={()=>this.props.deletePost(this.state.post.id)} id='delete'>
+                    <label>DELETE</label>
+                    <DeleteForeverIcon id='delete-icon'  />
+                </Button>
             </>
             :
             <>
-            {this.state.post.users_liked_by?.includes(this.props.currentUser?.id)?
-            <Button onClick={this.unsavePost} id="like">
-                <label>UNLIKE</label>
-                <RemoveCircleIcon id='unlike-icon'  />
-            </Button>
-            :
-            <Button onClick={this.savePost} id="unlike">
-                <label>LIKE</label>
-                <FavoriteIcon id='like-icon'  />
-            </Button>
-            }
+                {this.state.post.users_liked_by?.includes(this.props.currentUser?.id)?
+                <Button onClick={this.unsavePost} id="unlike">
+                    <label>UNLIKE</label>
+                    <RemoveCircleIcon id='unlike-icon'  />
+                </Button>
+                :
+                <Button onClick={this.savePost} id="like">
+                    <label>LIKE</label>
+                    <FavoriteIcon id='like-icon'  />
+                </Button>
+                }
             </>
             }
 

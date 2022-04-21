@@ -67,12 +67,12 @@ class SinglePost extends React.Component {
             :
             <>
             {this.props.post.users_liked_by?.includes(this.props.currentUser?.id)?
-            <Button onClick={this.unsavePost} id="like">
+            <Button onClick={this.unsavePost} id="unlike">
                 <label>UNLIKE</label>
                 <RemoveCircleIcon id='unlike-icon'  />
             </Button>
             :
-            <Button onClick={this.savePost} id="unlike">
+            <Button onClick={this.savePost} id="like">
                 <label>LIKE</label>
                 <FavoriteIcon id='like-icon'  />
             </Button>
