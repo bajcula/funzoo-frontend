@@ -264,11 +264,14 @@
   font-size: 16px;
 }
 .form-row-category {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 10px;
+  color:#9B229B;
   gap: 10px;
+  font-weight: 700;
 }
 .mb-3 {
   display: flex;

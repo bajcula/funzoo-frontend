@@ -15,7 +15,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
+    bgcolor: 'aqua',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -212,7 +212,7 @@ class OtherSinglePostContainer extends React.Component {
                     <label htmlFor="description">Description:</label>
                     <input onChange={this.handleUpdatePostChange} name="description" value={this.state.updatedPost.description}></input>
                 </div>
-                <div className="form-row-category">
+                <div className="form-row-category purple">
                         <label htmlFor="pet_category">Category:</label>
                         {['dog', 'cat', 'other'].map((option) => (
                             <div key={`inline-radio-div-${option}`} className="mb-3">
@@ -243,7 +243,7 @@ class OtherSinglePostContainer extends React.Component {
                     <label htmlFor="location">Location:</label>
                     <input onChange={this.handleUpdatePostChange} name="location" value={this.state.updatedPost.location}></input>
                 </div>
-                <button type="submit">SUBMIT</button>
+                <Button className="glow-on-hover" type="submit">SUBMIT</Button>
             </form>
         </div>
                 </Typography>
