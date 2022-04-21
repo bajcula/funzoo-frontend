@@ -119,16 +119,7 @@
   color: rgb(155, 34, 155);
   text-shadow: 1px 1px white;
 }
-/* .home-page-div {
-  display:flex;
-  flex-direction: column;
-  background-color: #e6e6e6;
-  background-image: url('/public/abc.avif');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-} */
+
 #nav-span {
   font-weight: 900;
 }
@@ -204,7 +195,7 @@
 .home-title {
   margin-bottom: 20px;
 }
-.landing-page, .home-page-div, .register-page, .accounts-page, .single-account, .single-post, .saved-posts {
+.landing-page, .home-page-div, .register-page, .login-page, .accounts-page, .single-account, .single-post, .saved-posts {
   background-color: #e6e6e6;
   background-image: url('/public/abc.avif');
   -webkit-background-size: cover;
@@ -294,6 +285,9 @@
   .landing-img {
     max-height: 300px;
     max-width: 350px;
+  }
+  #community-btn, #gallery-btn, #myprofile-btn, #sign-out-btn, #sign-in-btn, #sign-up-btn {
+    width: 300px;
   }
 }
 @media only screen and (min-width: 1024px) {

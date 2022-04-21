@@ -1,6 +1,7 @@
 import React from "react";
 import apiUrl from "../../apiConfig";
 import Navbar from "../../Navbar/Navbar";
+import { Button } from "@mui/material";
 
 
 class Login extends React.Component {
@@ -24,9 +25,7 @@ class Login extends React.Component {
         })
     }
     loginTry = async(e) => {
-      
         e.preventDefault()
-      
         const apiResponse = await fetch (`${apiUrl}/auth/login/`, {
             method: "POST",
             body: JSON.stringify(this.state.possibleUser),
@@ -55,7 +54,13 @@ class Login extends React.Component {
         return (
             <div className="login-page">
                 <Navbar></Navbar>
-                <div>
+                <div className="login-page-div">
+                    {this.currentUser.email?
+                    <>
+                        <p>USER LOGGED IN</p>
+                        <Button className="glow-on-hover" onClick={this.logout}>Logout</Button>
+                    </>
+                        :
                     <form onSubmit={this.loginTry}>
                         <br/>
                         <br/>
@@ -63,14 +68,10 @@ class Login extends React.Component {
                         <br/>
                         <br/>
                         password:<input onChange={this.handleLoginChange} name="password"></input>
-                        <button>Log In</button>
+                        <br/>
+                        <Button className="glow-on-hover">Log In</Button>
                     </form>
-                    {this.currentUser?
-                        <p>USER LOGGED IN</p>
-                        :
-                        <p>still anonymus</p>
                     }
-                    <button onClick={this.logout}>Logout</button>
                 </div>
             </div>
         )
