@@ -6,7 +6,7 @@ class Navbar extends React.Component {
     constructor(){
         super()
         this.state = {
-            currentUser: {}
+          theCurrentUser: {}
         }
     }
     getUser = () => {
@@ -22,7 +22,7 @@ class Navbar extends React.Component {
       sessionStorage.removeItem('user');
       localStorage.clear()
       this.setState({
-        currentUser: {}
+        theCurrentUser: {}
       })
       window.location.href = "https://funzoo.herokuapp.com"
     }
@@ -30,7 +30,7 @@ class Navbar extends React.Component {
       const currentUser = this.getUser()
       if (currentUser) {
         this.setState({
-          currentUser: currentUser
+          theCurrentUser: currentUser
         })
       }
     }
@@ -40,17 +40,17 @@ class Navbar extends React.Component {
               <div className="banner-container">
               </div>
               <h2><span id="nav-span">FUNZ</span>&#9787;&#9787;</h2>
-              {this.state.currentUser.name?
-              <h3>Welcome {this.state.currentUser.name}</h3>
+              {this.state.theCurrentUser.name?
+              <h3>Welcome {this.state.theCurrentUser.name}</h3>
               :
               <h3>Please Sign In or Sign Up.</h3>
               }
               <div className="sign-in-out-div">
-              {this.state.currentUser.email?
+              {this.state.theCurrentUser.email?
               <div id="nav-buttons">
                 <Link className="link"  to='/home'><Button id="gallery-btn" className="glow-on-hover" variant="outlined">Gallery</Button></Link>
                 <Link className="link"  to='/accounts'><Button id="community-btn" className="glow-on-hover" variant="outlined">Community</Button></Link>
-                <Link className="link"  to={`/accounts/${this.state.currentUser.id}`}><Button id="myprofile-btn" className="glow-on-hover" variant="outlined">My profile</Button></Link>
+                <Link className="link"  to={`/accounts/${this.state.theCurrentUser.id}`}><Button id="myprofile-btn" className="glow-on-hover" variant="outlined">My profile</Button></Link>
                 <Button className="glow-on-hover" id="sign-out-btn" onClick={this.logout}>Logout</Button>
               </div>
               :

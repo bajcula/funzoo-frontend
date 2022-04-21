@@ -50,8 +50,10 @@ class SinglePost extends React.Component {
     render(){
         return (
         <div id='single-post'>
-            <a href={`${window.location.origin}/posts/${this.props.post.id}`}><h2>{this.props.post.title}</h2></a>
-            <img className="single-post-img" src={this.props.post.img}></img>
+            <a href={`${window.location.origin}/posts/${this.props.post.id}`}>
+                <h2>{this.props.post.title}</h2>
+                <img className="single-post-img" src={this.props.post.img}></img>
+            </a>
             <h3>{this.props.post.description}</h3>
             <p><b>Category:</b> {this.props.post.pet_category}</p>
             <p><b>Location:</b> {this.props.post.location}</p>

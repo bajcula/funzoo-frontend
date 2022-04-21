@@ -31,7 +31,7 @@ class Accounts extends React.Component {
                 <Navbar></Navbar>
                 <div className="accounts-page-div">
                     <h4 className="community-head">We are proud to have {this.state.users.length} members of the FUNZOO FAMILY already.</h4>
-                    <ul>
+                    <ul className="accounts-page-ul">
                     {this.state.users.map(u=>{
                         return (
                             <li key={`user-${u.id}`}><UserCard  user={u}></UserCard></li>
