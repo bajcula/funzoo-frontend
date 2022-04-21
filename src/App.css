@@ -282,7 +282,7 @@
 
 
 @media only screen and (min-width: 768px) {
-  .home-container {
+  .home-container, .landing-page-img-div {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -291,14 +291,18 @@
     max-height: 300px;
     max-width: 300px;
   }
+  .landing-img {
+    max-height: 300px;
+    max-width: 350px;
+  }
 }
 @media only screen and (min-width: 1024px) {
-  .home-container {
+  .home-container, .landing-page-img-div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
   }
-  .users-page-image, .single-post-img {
+  .users-page-image, .single-post-img, .landing-img {
     max-height: 300px;
     max-width: 300px;
   }

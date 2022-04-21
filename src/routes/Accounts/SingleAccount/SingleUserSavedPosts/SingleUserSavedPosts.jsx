@@ -33,7 +33,7 @@ class SingleUserSavedPosts extends React.Component {
                         <a key={`users-post-${p.id}`} href={`${window.location.origin}/posts/${p.id}`}>
                             <div >
                                 <p>{p.title}</p>
-                                <img className="users-page-image" src={`${apiUrl}/media/${p.img}`}></img>
+                                <img className="users-page-image" src={p.img}></img>
                             </div>
                         </a>
                     )

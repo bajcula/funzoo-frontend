@@ -25,6 +25,7 @@ class SinglePost extends React.Component {
             this.props.handler(newUpdatedPost, this.props.post.id)
         }
     }
+
     unsavePost = async(e) => {
         e.preventDefault()
         const currentUser = this.props.currentUser
@@ -45,16 +46,17 @@ class SinglePost extends React.Component {
             this.props.handler(newUpdatedPost, this.props.post.id)
         }
     }
+ 
     render(){
         return (
         <div id='single-post'>
-            <a href={`${window.location.origin}/posts/${this.props.post.id}`}><h3>{this.props.post.title}</h3></a>
+            <a href={`${window.location.origin}/posts/${this.props.post.id}`}><h2>{this.props.post.title}</h2></a>
             <img className="single-post-img" src={this.props.post.img}></img>
-            <h6>{this.props.post.description}</h6>
+            <h3>{this.props.post.description}</h3>
             <p>Category: {this.props.post.pet_category}</p>
             <p>Location: {this.props.post.location}</p>
             <p>Created by: {this.props.post.authorName}</p>
-            <p>Cretated at: {this.props.post.created_at}</p>
+            <p>Date created: {this.props.post.created_at.slice(0,11)}</p>
             {this.props.currentUser.id === this.props.post.authorID?
             <Button className="single-card-btn">
                 <label>UNLIKE</label>
