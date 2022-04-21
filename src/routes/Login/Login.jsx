@@ -39,7 +39,7 @@ class Login extends React.Component {
             localStorage.setItem("user", JSON.stringify(parsedResponse.user))
             window.location.href = window.location.origin
         } else {
-            alert(`${parsedResponse.details}`)
+            alert('Wrong credentials.')
             window.location.reload()
         }
     }
