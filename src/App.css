@@ -218,7 +218,7 @@
 .landing-page-img-div img {
   padding: 20px;
 }
-.users-page-image, .single-post-img {
+.users-page-image, .single-post-img, .single-post-page-img {
   width: auto;
   height: auto;
   max-height: 90vw;
@@ -282,6 +282,10 @@
     max-height: 300px;
     max-width: 300px;
   }
+  .single-post-page-img {
+    max-width: 650px;
+    max-height: 500px;
+  }
   .landing-img {
     max-height: 300px;
     max-width: 350px;
@@ -298,10 +302,6 @@
   .users-page-image, .landing-img {
     max-height: 300px;
     max-width: 300px;
-  }
-  .single-post-img {
-    max-height: 600px;
-    max-width: 700px;
   }
   .accounts-page-ul {
     display: grid;
