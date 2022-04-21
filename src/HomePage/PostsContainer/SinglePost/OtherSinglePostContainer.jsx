@@ -160,8 +160,8 @@ class OtherSinglePostContainer extends React.Component {
             <h2>{this.state.post.title}</h2>
             <img className="single-post-page-img" src={this.state.post.img}></img>
             <h3>{this.state.post.description}</h3>
-            {this.state.post?.users_liked_by.lenght > 1 &&
-                <p><b>Liked by {this.state.post?.users_liked_by.length} members already.</b></p>
+            {this.state.post.users_liked_by?.lenght > 1 &&
+                <p><b>Liked by {this.state.post.users_liked_by?.length} members already.</b></p>
             }
             <p><b>Category:</b> {this.state.post.pet_category}</p>
             <p><b>Location:</b> {this.state.post.location}</p>
