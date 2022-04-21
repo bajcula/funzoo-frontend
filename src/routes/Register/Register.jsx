@@ -17,7 +17,6 @@ class Register extends React.Component {
         }
     }
     handleNewUserChange = (e) => {
-        if (e.target.password1.value === e.target.password2)
         this.setState({
             newUser: {
                 ...this.state.newUser,

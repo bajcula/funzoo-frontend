@@ -43,7 +43,6 @@ class Login extends React.Component {
             // LOGIN ERROR
             window.location.reload()
         }
-        
     }
     logout = () => {
         localStorage.clear()
@@ -67,7 +66,7 @@ class Login extends React.Component {
                         </div>
                         <div>
                             <label htmlFor="password">PASSWORD:</label>
-                            <input type='password' name="password"></input>
+                            <input id='password' type='password' name="password"></input>
                         </div>
                         <Button type='submit' id='log-in-btn' className="glow-on-hover">Log In</Button>
                     </form>
