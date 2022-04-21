@@ -14,7 +14,6 @@ class Login extends React.Component {
             }
         })
     }
-    currentUser = localStorage.getItem("user")
     handleLoginChange = (e) => {
         e.preventDefault()
         this.setState({
@@ -66,7 +65,7 @@ class Login extends React.Component {
                         </div>
                         <div>
                             <label htmlFor="password">PASSWORD:</label>
-                            <input id='password' type='password' name="password"></input>
+                            <input onChange={this.handleLoginChange} id='password' name="password"></input>
                         </div>
                         <Button type='submit' id='log-in-btn' className="glow-on-hover">Log In</Button>
                     </form>
