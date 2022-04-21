@@ -117,7 +117,7 @@ class SingleAccount extends React.Component {
         return (
             <div className="single-account">
                 <Navbar></Navbar>
-                {this.props.theID !== this.props.currentUser.id &&
+                {this.props.theID != this.props.currentUser.id &&
                     <h2 className="purple">{this.state.pageUser.name}'s page:</h2>
                 }
                 <div className="single-account-div">

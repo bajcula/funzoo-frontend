@@ -8,7 +8,7 @@ class NewPost extends React.Component {
     render () {
         return (
             <div className="new-post-div">
-                <form className="new-post-form" onSubmit={this.props.createNewPost} encType='multipart/form'>
+                <form className="new-post-form purple" onSubmit={this.props.createNewPost} encType='multipart/form'>
                     <div className="form-row">
                         <label htmlFor="title">Title:</label>
                         <input onChange={this.props.handleNewPostChange} name="title"></input>
