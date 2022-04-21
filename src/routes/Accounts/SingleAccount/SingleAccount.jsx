@@ -117,8 +117,8 @@ class SingleAccount extends React.Component {
         return (
             <div className="single-account">
                 <Navbar></Navbar>
+                <h2>{this.state.pageUser.name}'s page:</h2>
                 <div className="single-account-div">
-                <h2>single account page of {this.state.pageUser.name}</h2>
                 <Link className="link" to={`/accounts/${this.state.pageUser.id}/saved`}>
                     <Button id='saved-link-btn'>
                         {this.props.theID == this.props.currentUser.id?

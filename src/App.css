@@ -171,7 +171,7 @@
   width: 95%;
   align-self: center;
 }
-.register-page-div div, .login-page-div div {
+.register-page-div div, .login-page-div div, .new-post-div-div {
   width: 100%;
   display: flex;
   margin: 14px 0;
@@ -208,7 +208,7 @@
   justify-content: space-between;
   min-height: 100vh;
 }
-.login-form, .register-form {
+.login-form, .register-form, .new-post-form {
   width: 340px;
   margin: 0 auto;
 }
@@ -312,7 +312,7 @@
   }
 }
 @media only screen and (max-width: 370px) {
-  .login-form, .register-form {
+  .login-form, .register-form, .new-post-form {
     width: 260px;
     margin: 0 auto;
   }
@@ -328,7 +328,7 @@
   }
   .accounts-page-ul {
     display: grid;
-    grid-template-columns: 300px 300px 300px;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
