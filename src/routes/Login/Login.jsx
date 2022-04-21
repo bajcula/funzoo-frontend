@@ -54,7 +54,7 @@ class Login extends React.Component {
             <div className="login-page">
                 <Navbar></Navbar>
                 <div className="login-page-div">
-                    {this.props.currentUser.email !== "" ?
+                    {this.props.currentUser?.email !== "" ?
                     <>
                         <p>You are logged in already.</p>
                         <Button id='log-out-btn' className="glow-on-hover" onClick={this.logout}>Logout</Button>
